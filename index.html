@@ -1,305 +1,421 @@
-<!DOCTYPE html><html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liga A.P.H.</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }body {
-  background: #f4f4f4;
-  color: #111;
+<!DOCTYPE html><html lang="es">  <head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Liga A.P.H.</title><style>  
+*{  
+margin:0;  
+padding:0;  
+box-sizing:border-box;  
+font-family:Arial,sans-serif;  
+}  body{
+background:#0f172a;
+color:white;
 }
 
-header {
-  background: linear-gradient(90deg, #003b8f, #119c3b);
-  color: white;
-  padding: 30px;
-  text-align: center;
+header{
+padding:25px;
+background:linear-gradient(90deg,#0b3d91,#16a34a);
+text-align:center;
+box-shadow:0 4px 10px rgba(0,0,0,.4);
 }
 
-header h1 {
-  font-size: 50px;
-  margin-bottom: 10px;
+header h1{
+font-size:45px;
 }
 
-header p {
-  font-size: 20px;
+header p{
+margin-top:8px;
+font-size:18px;
 }
 
-nav {
-  background: #002c6d;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 15px;
+.tabs{
+display:flex;
+gap:12px;
+padding:18px;
+overflow-x:auto;
+background:#111827;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+.tabs button{
+background:#1f2937;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
 }
 
-.banner {
-  background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1600&auto=format&fit=crop') center/cover;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-shadow: 2px 2px 5px black;
-  font-size: 45px;
-  font-weight: bold;
+.tabs button:hover{
+background:#2563eb;
 }
 
-.container {
-  width: 90%;
-  margin: auto;
-  padding: 30px 0;
+.container{
+width:95%;
+margin:auto;
+padding:20px 0;
 }
 
-.card {
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.section{
+display:none;
 }
 
-.card h2 {
-  color: #003b8f;
-  margin-bottom: 20px;
+.active{
+display:block;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.match-card{
+background:#1e293b;
+border-radius:25px;
+padding:25px;
+margin-bottom:25px;
+box-shadow:0 6px 15px rgba(0,0,0,.3);
 }
 
-th {
-  background: #003b8f;
-  color: white;
-  padding: 12px;
+.match-top{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+color:#9ca3af;
 }
 
-td {
-  padding: 12px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+.teams{
+display:flex;
+justify-content:space-between;
+align-items:center;
+text-align:center;
 }
 
-tr:nth-child(even) {
-  background: #f1f1f1;
+.team img{
+width:80px;
+height:80px;
+object-fit:contain;
+margin-bottom:10px;
 }
 
-.equipos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  text-align: center;
+.score{
+font-size:65px;
+font-weight:bold;
 }
 
-.equipo {
-  background: #f7f7f7;
-  padding: 20px;
-  border-radius: 12px;
+.status{
+margin-top:15px;
+font-size:14px;
+color:#22c55e;
+text-align:right;
 }
 
-.equipo img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 10px;
+.events{
+margin-top:20px;
+line-height:1.8;
+color:#d1d5db;
 }
 
-.noticia {
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
+.tabla-scroll{
+overflow-x:auto;
 }
 
-footer {
-  background: #002c6d;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 30px;
+.table-card{
+background:#1e293b;
+padding:20px;
+border-radius:20px;
 }
 
-  </style>
-</head>
-<body><header>
-  <h1>LIGA A.P.H.</h1>
-  <p>Andreas Peter Hauri</p>
-</header><nav>
-  <a href="#tabla">Tabla</a>
-  <a href="#calendario">Calendario</a>
-  <a href="#equipos">Equipos</a>
-  <a href="#noticias">Noticias</a>
-</nav><div class="banner">
-  Bienvenidos a la Liga A.P.H.
-</div><div class="container">  <div class="card" id="tabla">
-    <h2>Tabla de Posiciones</h2><table>
-  <tr>
-    <th>POS</th>
-    <th>SELECCIÓN</th>
-    <th>PJ</th>
-    <th>G</th>
-    <th>E</th>
-    <th>P</th>
-    <th>GF</th>
-    <th>GC</th>
-    <th>DG</th>
-    <th>PTS</th>
-  </tr>
+.table-card h2{
+margin-bottom:20px;
+}
 
-  <tr>
-    <td>1</td>
-    <td>Colombia</td>
-    <td>1</td>
-    <td>1</td>
-    <td>0</td>
-    <td>0</td>
-    <td>5</td>
-    <td>0</td>
-    <td>+5</td>
-    <td>2</td>
-  </tr>
+table{
+min-width:700px;
+width:100%;
+border-collapse:collapse;
+}
 
-  <tr>
-    <td>2</td>
-    <td>Argentina</td>
-    <td>1</td>
-    <td>1</td>
-    <td>0</td>
-    <td>0</td>
-    <td>3</td>
-    <td>0</td>
-    <td>+3</td>
-    <td>2</td>
-  </tr>
+th{
+background:#2563eb;
+padding:12px;
+}
 
-  <tr>
-    <td>3</td>
-    <td>Alemania</td>
-    <td>1</td>
-    <td>0</td>
-    <td>0</td>
-    <td>1</td>
-    <td>0</td>
-    <td>3</td>
-    <td>-3</td>
-    <td>0</td>
-  </tr>
+td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid #374151;
+}
 
-  <tr>
-    <td>4</td>
-    <td>Brasil</td>
-    <td>1</td>
-    <td>0</td>
-    <td>0</td>
-    <td>1</td>
-    <td>0</td>
-    <td>5</td>
-    <td>-5</td>
-    <td>0</td>
-  </tr>
-</table>
+tr:hover{
+background:#334155;
+}
 
-  </div>  <div class="card" id="calendario">
-    <h2>Calendario de Partidos</h2><p>⚽ Colombia vs Alemania - 05/06/2026</p>
-<br>
-<p>⚽ Argentina vs Brasil - 05/06/2026</p>
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
 
-  </div>  <div class="card" id="equipos">
-    <h2>Selecciones</h2><div class="equipos">
+.stat-card{
+background:#1e293b;
+padding:25px;
+border-radius:20px;
+text-align:center;
+}
 
-  <div class="equipo" onclick="mostrarPartidos('colombia')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Colombia">
-    <h3>Colombia</h3>
-  </div>
+.stat-card h3{
+font-size:35px;
+margin-bottom:10px;
+color:#22c55e;
+}
 
-  <div class="equipo" onclick="mostrarPartidos('argentina')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg" alt="Argentina">
-    <h3>Argentina</h3>
-  </div>
+.news-card{
+background:#1e293b;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
+}
 
-  <div class="equipo" onclick="mostrarPartidos('alemania')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Alemania">
-    <h3>Alemania</h3>
-  </div>
+footer{
+text-align:center;
+padding:30px;
+color:#9ca3af;
+}
+</style></head><body><header>
 
-  <div class="equipo" onclick="mostrarPartidos('brasil')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg" alt="Brasil">
-    <h3>Brasil</h3>
-  </div>
+<h1>⚽ LIGA A.P.H.</h1>  
+<p>Andreas Peter Hauri</p>  
+</header><div class="tabs">  
+<button onclick="mostrar('partidos')">Partidos</button>  
+<button onclick="mostrar('posiciones')">Posiciones</button>  
+<button onclick="mostrar('estadisticas')">Estadísticas</button>  
+<button onclick="mostrar('noticias')">Noticias</button>  
+</div><div class="container"><div id="partidos" class="section active"><div class="match-card">  
+<div class="match-top">  
+<span>Liga A.P.H.</span>  
+<span>Fin • 22/05/2026</span>  
+</div><div class="teams">  
+<div class="team" onclick="mostrarPartidosEquipo('colombia')" style="cursor:pointer;">  
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg">  
+<h2>Colombia</h2>  
+</div><div>  
+<div class="score">5 - 0</div>  
+</div><div class="team" onclick="mostrarPartidosEquipo('brasil')" style="cursor:pointer;">  
+<img src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg">  
+<h2>Brasil</h2>  
+</div>  
+</div>  
+</div><div class="match-card">  
+<div class="match-top">  
+<span>Liga A.P.H.</span>  
+<span>Fin • 22/05/2026</span>  
+</div><div class="teams">  
+<div class="team" onclick="mostrarPartidosEquipo('argentina')" style="cursor:pointer;">  
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg">  
+<h2>Argentina</h2>  
+</div><div>  
+<div class="score">3 - 0</div>  
+</div><div class="team" onclick="mostrarPartidosEquipo('alemania')" style="cursor:pointer;">  
+<img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg">  
+<h2>Alemania</h2>  
+</div>  
+</div>  
+</div><div class="match-card">  
+<div class="match-top">  
+<span>Próximo partido</span>  
+<span>05/06/2026</span>  
+</div><div class="teams">  
+<div class="team" onclick="mostrarPartidosEquipo('colombia')" style="cursor:pointer;">  
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg">  
+<h2>Colombia</h2>  
+</div><div>  
+<div class="score">VS</div>  
+</div><div class="team" onclick="mostrarPartidosEquipo('alemania')" style="cursor:pointer;">  
+<img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg">  
+<h2>Alemania</h2>  
+</div>  
+</div>  
+</div><div class="match-card">  
+<div class="match-top">  
+<span>Próximo partido</span>  
+<span>05/06/2026</span>  
+</div><div class="teams">  
+<div class="team" onclick="mostrarPartidosEquipo('argentina')" style="cursor:pointer;">  
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg">  
+<h2>Argentina</h2>  
+</div><div>  
+<div class="score">VS</div>  
+</div><div class="team" onclick="mostrarPartidosEquipo('brasil')" style="cursor:pointer;">  
+<img src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg">  
+<h2>Brasil</h2>  
+</div>  
+</div>  
+</div></div><div id="posiciones" class="section">  
+<div class="table-card">  
+<div class="tabla-scroll">  
+<h2>🏆 Tabla de Posiciones</h2><table>  
+<tr>  
+<th>POS</th>  
+<th>SELECCIÓN</th>  
+<th>PTS</th>  
+<th>PJ</th>  
+<th>DG</th>  
+<th>GF</th>  
+<th>GC</th>  
+</tr><tr>  
+<td>1</td>  
+<td>🇨🇴 Colombia</td>  
+<td>2</td>  
+<td>1</td>  
+<td>+5</td>  
+<td>5</td>  
+<td>0</td>  
+</tr><tr>  
+<td>2</td>  
+<td>🇦🇷 Argentina</td>  
+<td>2</td>  
+<td>1</td>  
+<td>+3</td>  
+<td>3</td>  
+<td>0</td>  
+</tr><tr>  
+<td>3</td>  
+<td>🇩🇪 Alemania</td>  
+<td>0</td>  
+<td>1</td>  
+<td>-3</td>  
+<td>0</td>  
+<td>3</td>  
+</tr><tr>  
+<td>4</td>  
+<td>🇧🇷 Brasil</td>  
+<td>0</td>  
+<td>1</td>  
+<td>-5</td>  
+<td>0</td>  
+<td>5</td>  
+</tr>  
+</table>  
+</div>  
+</div>  
+</div><div id="estadisticas" class="section">
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<h3>🇨🇴 Colombia</h3>
+<p>🏆 Líder del torneo</p>
+</div>
+
+<div class="stat-card">
+<h3>5</h3>
+<p>⚽ Máxima cantidad de goles</p>
+</div>
+
+<div class="stat-card">
+<h3>+5</h3>
+<p>📈 Mejor diferencia de gol</p>
+</div>
+
+<div class="stat-card">
+<h3>0</h3>
+<p>🥅 Mejor defensa</p>
+</div>
+
+<div class="stat-card">
+<h3>8</h3>
+<p>⚽ Goles totales del torneo</p>
+</div>
+
+<div class="stat-card">
+<h3>2</h3>
+<p>🏟️ Partidos jugados</p>
+</div>
 
 </div>
 
-<div id="infoPartidos" style="margin-top:30px; background:#eef5ff; padding:20px; border-radius:12px;">
-  <h3>Haz clic en una selección</h3>
-  <p>Aquí aparecerán los próximos partidos.</p>
+</div><div id="noticias" class="section">
+
+<div class="news-card">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+<span style="background:#22c55e;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:bold;">
+ÚLTIMA HORA
+</span>
+
+<span style="color:#9ca3af;font-size:14px;">
+22 Mayo 2026
+</span>
 </div>
 
-  </div>
-  </div>  <div class="card" id="noticias">
-    <h2>Noticias</h2><div class="noticia">
-  <h3>🔥 Colombia inicia líder</h3>
-  <p>La selección colombiana ganó su primer partido con una goleada.</p>
+<h2 style="margin-bottom:12px;font-size:28px;">
+🔥 Colombia aplasta a Brasil y toma el liderato
+</h2>
+
+<p style="color:#d1d5db;line-height:1.7;">
+La selección colombiana debutó con una actuación histórica en la Liga A.P.H.,
+derrotando 5-0 a Brasil y colocándose en la primera posición del torneo escolar.
+</p>
+
+<div style="margin-top:18px;color:#22c55e;font-weight:bold;">
+Ver más →
+</div>
 </div>
 
-<div class="noticia">
-  <h3>⚽ Argentina consigue gran victoria</h3>
-  <p>Argentina suma sus primeros 2 puntos del torneo.</p>
+<div class="news-card">
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+<span style="background:#2563eb;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:bold;">
+DESTACADO
+</span>
+
+<span style="color:#9ca3af;font-size:14px;">
+22 Mayo 2026
+</span>
 </div>
 
-  </div></div><footer>
-  Liga A.P.H. - Andreas Peter Hauri © 2026
-</footer><script>
-function mostrarPartidos(equipo) {
-  const info = document.getElementById('infoPartidos');
+<h2 style="margin-bottom:12px;font-size:28px;">
+⚽ Argentina inicia fuerte ante Alemania
+</h2>
 
-  const partidos = {
-    colombia: `
-      <h3>🇨🇴 Colombia</h3>
-      <p>✅ Colombia 5 vs Brasil 0 — 22/05/2026 — Victoria </p>
-      <p>⚽ Próximo partido: Colombia vs Alemania — 05/06/2026</p>
-      <p>📅 Siguiente fecha: 12/06/2026 — Por definirse</p>
-    `,
+<p style="color:#d1d5db;line-height:1.7;">
+Argentina consiguió una importante victoria 3-0 frente a Alemania y comparte el liderato con Colombia tras la primera fecha.
+</p>
 
-    argentina: `
-      <h3>🇦🇷 Argentina</h3>
-      <p>✅ Argentina 3 vs Alemania 0 — 22/05/2026 — Victoria </p>
-      <p>⚽ Próximo partido: Argentina vs Brasil — 05/06/2026</p>
-      <p>📅 Siguiente fecha: 12/06/2026 — Por definirse</p>
-    `,
+<div style="margin-top:18px;color:#3b82f6;font-weight:bold;">
+Ver más →
+</div>
 
-    alemania: `
-      <h3>🇩🇪 Alemania</h3>
-      
-      
-      <p>❌ Alemania 0 vs Argentina 3 — 22/05/2026 — Derrota </p>
-      
-      
-      <p>⚽ Próximo partido: Alemania vs Colombia — 05/06/2026</p>
-      
-      
-      <p>📅 Siguiente fecha: 12/06/2026 — Por definirse</p>
-    `,
+</div>
 
-    brasil: `
-      <h3>🇧🇷 Brasil</h3>
-      <p>❌ Brasil 0 vs Colombia 5 — 22/05/2026 — Derrota </p>
-      <p>⚽ Próximo partido:Brasil vs Argentina — 05/06/2026</p>
-      <p>📅 Siguiente fecha: 12/06/2026 — Por definirse</p>
-    `
-  };
+<div class="news-card">
 
-  info.innerHTML = partidos[equipo];
-}
-</script></body>
-</html>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+<span style="background:#f59e0b;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:bold;">
+PRÓXIMA FECHA
+</span>
+
+<span style="color:#9ca3af;font-size:14px;">
+05 Junio 2026
+</span>
+</div>
+
+<h2 style="margin-bottom:12px;font-size:28px;">
+📅 Se aproxima la segunda jornada
+</h2>
+
+<p style="color:#d1d5db;line-height:1.7;">
+Colombia enfrentará a Alemania mientras que Argentina jugará contra Brasil en una fecha clave para la clasificación.
+</p>
+
+<div style="margin-top:18px;color:#f59e0b;font-weight:bold;">
+Ver calendario →
+</div>
+
+</div>
+
+</div><footer>  
+Liga A.P.H. © 2026  
+</footer><script>  
+function mostrar(id){  
+const secciones=document.querySelectorAll('.section');  
+secciones.forEach(sec=>sec.classList.remove('active'));  
+document.getElementById(id).classList.add('active');  
+}  
+</script></body>  
+        </html>
